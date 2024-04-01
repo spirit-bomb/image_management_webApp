@@ -5,7 +5,7 @@ import Image from 'next/image';
 import {useRouter} from 'next/navigation';
 import {DNA} from 'react-loader-spinner';
 
-
+export const revalidate = 0;
 
 function Display() {
     const router=useRouter();
@@ -13,11 +13,15 @@ function Display() {
     const [loading,setLoading]=useState(true);
     const fetchPics=async()=>{
         setLoading(true)
-        await axios.get(`/api/images`).then((res)=>{
-            const data=res.data;
-            setPics(data);
-            setLoading(false)
-        })
+        // await axios.get(`/api/images`).then((res)=>{
+        //     const data=res.data;
+        //     setPics(data);
+        //     setLoading(false)
+        // })
+        const res=await fetch('/api/images');
+        const data=await res.json();
+        setPics(data);
+        setLoading(false);
     }
     const handleDelete=async(id,imgUrl)=>{
         const hasConfirmed=confirm("Are you sure? you want to delete the selected image?");
@@ -85,5 +89,5 @@ function Display() {
     </div>
   )
 }
-export const revalidate=0;
+
 export default Display
