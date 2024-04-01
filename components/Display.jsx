@@ -5,6 +5,8 @@ import Image from 'next/image';
 import {useRouter} from 'next/navigation';
 import {DNA} from 'react-loader-spinner';
 
+
+
 function Display() {
     const router=useRouter();
     const [pics,setPics]=useState([]);
@@ -83,5 +85,5 @@ function Display() {
     </div>
   )
 }
-
+export const revalidate=0;
 export default Display
