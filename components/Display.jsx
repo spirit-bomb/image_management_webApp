@@ -27,10 +27,18 @@ function Display() {
         const hasConfirmed=confirm("Are you sure? you want to delete the selected image?");
         if(hasConfirmed){
             try{
-                await axios.delete(`/api/remove?id=${id}&imgUrl=${imgUrl}`);
-                const updatedPics=pics.filter((pic)=>pic._id!==id);
-                setPics(updatedPics);
-                alert("image deleted!");
+                // await axios.delete(`/api/remove?id=${id}&imgUrl=${imgUrl}`);
+                // const updatedPics=pics.filter((pic)=>pic._id!==id);
+                // setPics(updatedPics);
+                // alert("image deleted!");
+                const res=await fetch(`/api/remove?id=${id}&imgUrl=${imgUrl}`,{
+                    method:'DELETE',
+                });
+                if(res.ok){
+                    const updatedPics=pics.filter((pic)=>pic._id!==id);
+                    setPics(updatedPics);
+                    alert("image deleted!");
+                }
             }
             catch(error){
                 console.log(error);
