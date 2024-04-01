@@ -57,8 +57,8 @@ function Display() {
         </div>:
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-6
         xl:grid-cols-4">
-            {pics.map((x)=>(
-                <div className="mx-auto p-2">
+            {pics.map((x,i)=>(
+                <div className="mx-auto p-2" key={i}>
                     <div className="">
                         <Image src={x.image_url}
                         alt="pic"
