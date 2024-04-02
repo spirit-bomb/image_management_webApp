@@ -18,10 +18,15 @@ function Display() {
         //     setPics(data);
         //     setLoading(false)
         // })
-        const res=await fetch('/api/images');
-        const data=await res.json();
-        setPics(data);
-        setLoading(false);
+        const res=await fetch('/api/images',{
+            method:"PUT",
+            next: { revalidate: 0 },
+        });
+        if(res.ok){
+            const data=await res.json();
+            setPics(data);
+            setLoading(false);
+        }
     }
     const handleDelete=async(id,imgUrl)=>{
         const hasConfirmed=confirm("Are you sure? you want to delete the selected image?");
